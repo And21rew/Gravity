@@ -15,6 +15,7 @@ public class Core extends AppCompatActivity {
 
     private LoopCore loopCore;
     private GraphicsCore graphicsCore;
+    private TouchListener touchListener;
 
     private Display display;
     private Point sizeDisplay;
@@ -41,6 +42,9 @@ public class Core extends AppCompatActivity {
 
         loopCore = new LoopCore(this, frameBuffer);
         graphicsCore = new GraphicsCore(getAssets(), frameBuffer);
+        touchListener = new TouchListener(loopCore, sceneWidth, sceneHeight);
+
+        sceneCore = GetStartScene();
 
         stateOnPause = false;
         stateOnResume = false;
@@ -72,6 +76,9 @@ public class Core extends AppCompatActivity {
         return graphicsCore;
     }
 
+    public TouchListener GetTouchListener(){
+        return touchListener;
+    }
     public void SetScene(SceneCore sceneCore){
         if (sceneCore == null){
             throw new IllegalArgumentException("NET TAKOI SCENE");

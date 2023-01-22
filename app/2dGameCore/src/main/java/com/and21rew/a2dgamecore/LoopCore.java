@@ -1,8 +1,14 @@
 package com.and21rew.a2dgamecore;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
 import java.util.Date;
 
-public class LoopCore implements Runnable{
+public class LoopCore extends SurfaceView implements Runnable{
 
     private final float FPS = 60f;
     private final float SECOND = 10_000_000f;
@@ -11,6 +17,20 @@ public class LoopCore implements Runnable{
     private boolean running = false;
 
     Thread gameThread = null;
+    Core core;
+    Bitmap frameBuffer;
+    SurfaceHolder surfaceHolder;
+    Canvas canvas;
+    Rect rect;
+
+    public LoopCore(Core core, Bitmap frameBuffer){
+        super(core);
+        this.frameBuffer = frameBuffer;
+        this.core = core;
+        this.surfaceHolder = getHolder();
+        rect = new Rect();
+        canvas = new Canvas();
+    }
 
     //TEMP
     float updates = 0;
@@ -48,10 +68,18 @@ public class LoopCore implements Runnable{
 
     private void UpdateGame(){
         updates++;
+        core.GetCurrentSceneCore().Update();
     }
 
     private void DrawingGame(){
         drawing++;
+        if (surfaceHolder.getSurface().isValid()){
+            canvas = surfaceHolder.lockCanvas();
+            canvas.getClipBounds(rect);
+            canvas.drawBitmap(frameBuffer, null, rect, null);
+            core.GetCurrentSceneCore().Drawing();
+            surfaceHolder.unlockCanvasAndPost(canvas);
+        }
     }
 
     public void StartGame(){
