@@ -5,6 +5,7 @@ import android.graphics.Color;
 import com.and21rew.a2dgamecore.Core;
 import com.and21rew.a2dgamecore.GraphicsCore;
 import com.and21rew.a2dgamecore.SceneCore;
+import com.and21rew.gravity.Classes.GameManager;
 import com.and21rew.gravity.Generators.GeneratorBackground;
 import com.and21rew.gravity.R;
 
@@ -19,10 +20,12 @@ public class GameScene extends SceneCore {
 
     GameState gameState;
     GeneratorBackground generatorBackground;
+    GameManager gameManager;
     public GameScene(Core core) {
         super(core);
         gameState = GameState.READY;
         generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight);
+        gameManager = new GameManager(core, sceneWidth, sceneHeight);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class GameScene extends SceneCore {
 
     private void UpdateStateRunning() {
         generatorBackground.Update();
+        gameManager.Update();
     }
 
     private void UpdateStatePause() {
@@ -85,8 +89,8 @@ public class GameScene extends SceneCore {
 
     private void DrawingStateRunning() {
         graphicsCore.ClearScene(Color.BLACK);
-        graphicsCore.DrawText("GAME SCENE", 250, 300, Color.WHITE, 60, null);
         generatorBackground.Drawing(graphicsCore);
+        gameManager.Drawing(core, graphicsCore);
     }
 
     private void DrawingStatePause() {

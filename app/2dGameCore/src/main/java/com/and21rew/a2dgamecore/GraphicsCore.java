@@ -79,4 +79,8 @@ public class GraphicsCore {
 
         return textureGame;
     }
+
+    public Bitmap UpdateSprite(Bitmap textureAtlas, int x, int y, int widthSprite, int heightSprite){
+        return Bitmap.createBitmap(textureAtlas, x, y, widthSprite, heightSprite);
+    }
 }
