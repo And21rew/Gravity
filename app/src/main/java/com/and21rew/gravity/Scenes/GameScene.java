@@ -19,12 +19,10 @@ public class GameScene extends SceneCore {
     }
 
     GameState gameState;
-    GeneratorBackground generatorBackground;
     GameManager gameManager;
     public GameScene(Core core) {
         super(core);
         gameState = GameState.READY;
-        generatorBackground = new GeneratorBackground(sceneWidth, sceneHeight);
         gameManager = new GameManager(core, sceneWidth, sceneHeight);
     }
 
@@ -51,7 +49,6 @@ public class GameScene extends SceneCore {
     }
 
     private void UpdateStateRunning() {
-        generatorBackground.Update();
         gameManager.Update();
     }
 
@@ -89,7 +86,6 @@ public class GameScene extends SceneCore {
 
     private void DrawingStateRunning() {
         graphicsCore.ClearScene(Color.BLACK);
-        generatorBackground.Drawing(graphicsCore);
         gameManager.Drawing(core, graphicsCore);
     }
 

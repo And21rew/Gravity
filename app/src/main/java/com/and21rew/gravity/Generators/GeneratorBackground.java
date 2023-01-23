@@ -20,9 +20,9 @@ public class GeneratorBackground {
         }
     }
 
-    public void Update(){
+    public void Update(double speedPlayer){
         for (int i = 0; i < starArrayList.size(); i++){
-            starArrayList.get(i).Update();
+            starArrayList.get(i).Update(speedPlayer);
         }
     }
 

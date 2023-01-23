@@ -1,4 +1,4 @@
-package com.and21rew.a2dgamecore.Utilities;
+package com.and21rew.gravity.Utilities;
 
 import android.graphics.Bitmap;
 
@@ -8,4 +8,5 @@ public class UtilResource {
 
     public static Bitmap textureAtlas;
     public static ArrayList<Bitmap> spritePlayer;
+    public static ArrayList<Bitmap> spritePlayerBoost;
 }

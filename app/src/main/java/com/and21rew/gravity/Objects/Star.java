@@ -15,10 +15,11 @@ public class Star extends ObjectCore {
         this.y = UtilRandomCore.GetCasualNumber(maxScreenY);
     }
 
-    public void Update(){
-        setX((int)(getX() - getSpeed()));
+    public void Update(double speedPlayer){
+        x -= speedPlayer;
+        x -= speed;
 
-        if (getX() < 0){
+        if (x < 0){
             x = maxScreenX;
             y = UtilRandomCore.GetCasualNumber(maxScreenY);
         }

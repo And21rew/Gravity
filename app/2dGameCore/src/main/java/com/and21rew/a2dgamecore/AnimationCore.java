@@ -1,10 +1,8 @@
-package com.and21rew.gravity.Classes;
+package com.and21rew.a2dgamecore;
 
 import android.graphics.Bitmap;
 
-import com.and21rew.a2dgamecore.GraphicsCore;
-
-public class AnimationGame {
+public class AnimationCore {
 
     double speedAnimation;
     int delayIndex;
@@ -17,7 +15,7 @@ public class AnimationGame {
     Bitmap sprite3;
     Bitmap sprite4;
 
-    public AnimationGame(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
+    public AnimationCore(double speedAnimation, Bitmap sprite1, Bitmap sprite2, Bitmap sprite3, Bitmap sprite4) {
 
         sprite = sprite1;
         this.speedAnimation = speedAnimation;
@@ -39,7 +37,7 @@ public class AnimationGame {
         if (countFrames == 2){
             sprite = sprite3;
         }
-        if (countFrames == 4){
+        if (countFrames == 3){
             sprite = sprite4;
         }
         countFrames++;
